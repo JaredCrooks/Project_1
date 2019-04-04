@@ -1,3 +1,10 @@
+/* ------------------------------------------------------------------------------------------------------------------
+
+TODOO Run Program and be greeted by an user interface
+
+
+--------------------------------------------------------------------------------------------------------------------*/
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <math.h>
@@ -13,20 +20,38 @@ int main() {
     int K = 5;  // the Key (rotation amount)
     int Z = 26; /* length of the message YET TO COMPLETE: auto find legth*/
    
+   
     char msg[Z];    //set up array to store message
     zero(msg, Z);   // zero the array 
+    
+    
     encryption(msg, K, Z);  //takes the array, the value of the key and the length of the array
     Dcryption(msg, K, Z);   //takes the array, the value of the key and the length of the array
+
+
     
     for(int i =0; i < Z; i++){
         printf("%c", (int)msg[i]); //print the array CHANGE TO %c FOR LETTER, %d FOR ASCII
     }
-
     return 0;
 }
 
 /*------------MAIN CODE ENDS HERE------------MAIN CODE ENDS HERE------------MAIN CODE ENDS HERE------------*/
 
+/* ---------------------------------------------------------------
+This function takes an array letters, and the length of the array 
+ and forces the letters all to uppercase. 
+
+It then takes the key and moves the ASCII values by the value of the
+key. This shifts input letter to another letter (values of key) spaces 
+along the alphabet.
+
+The function corrects for the values going outside ASCII 
+corrisponding to letters by either adding or subtracting 26 to the
+value encrypted letter. 
+
+Currently there is no provision for non letter charaters 
+-----------------------------------------------------------------*/
 
 void encryption(char *alpha, int K, int Z){ 
     for(int i = 0; i < Z; i++){ // runs for the length of the message
@@ -44,6 +69,12 @@ void encryption(char *alpha, int K, int Z){
 
     }
 }
+
+/* ---------------------------------------------------------------
+Exactly the same to the encryption function except it substracts 
+the value of the key hence decrypting
+-----------------------------------------------------------------*/
+
 void Dcryption(char *alpha, int K, int Z){ 
     for(int i = 0; i < Z; i++){ // runs for the length of the message
         scanf("%c", &alpha[i]); //taking values from stdin and storing them in aphla
@@ -60,7 +91,14 @@ void Dcryption(char *alpha, int K, int Z){
 
     }
 }
-void zero(char *x, int N){ // function to set all values of an array to zero 
+
+/* ---------------------------------------------------------------
+function to set all values of an array to zero 
+
+It takes and array of type char and modifies it
+-----------------------------------------------------------------*/
+
+void zero(char *x, int N){ 
     int i =0;
     for(i= 0; i < N; i++){
     x[i] = 0;
