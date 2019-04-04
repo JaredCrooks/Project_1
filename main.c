@@ -21,7 +21,7 @@ int main() {
     }
 
     return 0;
-}
+}//
 
 /*------------MAIN CODE ENDS HERE------------MAIN CODE ENDS HERE------------MAIN CODE ENDS HERE------------*/
 
