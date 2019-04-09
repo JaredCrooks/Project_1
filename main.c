@@ -10,12 +10,22 @@ TODOO Run Program and be greeted by an user interface
 #include <math.h>
 
 //function prototypes 
-void encryption(char *alpha, int K, int Z); 
-void Dcryption(char *alpha, int K, int Z);
+void encryption1(char *alpha, int K, int Z); 
+void Dcryption1(char *alpha, int K, int Z);
 void zero(char *x, int N);
 
 /*------------MAIN CODE STARTS HERE------------MAIN CODE STARTS HERE------------MAIN CODE STARTS HERE------------*/
-
+/*FILE *test;
+test = fopen("data", "r");
+if(test == NULL) {
+  perror("fopen()");
+return; }
+// open file etc
+while(!feof(test)) {
+  // Read from file
+// Do stuff
+}
+ */
 int main() {
     int K = 5;  // the Key (rotation amount)
     int Z = 26; /* length of the message YET TO COMPLETE: auto find legth*/
@@ -25,8 +35,8 @@ int main() {
     zero(msg, Z);   // zero the array 
     
     
-    encryption(msg, K, Z);  //takes the array, the value of the key and the length of the array
-    Dcryption(msg, K, Z);   //takes the array, the value of the key and the length of the array
+    encryption1(msg, K, Z);  //takes the array, the value of the key and the length of the array
+    Dcryption1(msg, K, Z);   //takes the array, the value of the key and the length of the array
 
 
     
@@ -53,7 +63,7 @@ value encrypted letter.
 Currently there is no provision for non letter charaters 
 -----------------------------------------------------------------*/
 
-void encryption(char *alpha, int K, int Z){ 
+void encryption1(char *alpha, int K, int Z){ 
     for(int i = 0; i < Z; i++){ // runs for the length of the message
         scanf("%c", &alpha[i]); //taking values from stdin and storing them in aphla
         if(alpha[i] >= 97 && alpha[i] <= 122){// if lowercase make uppercase
@@ -75,7 +85,7 @@ Exactly the same to the encryption function except it substracts
 the value of the key hence decrypting
 -----------------------------------------------------------------*/
 
-void Dcryption(char *alpha, int K, int Z){ 
+void Dcryption1(char *alpha, int K, int Z){ 
     for(int i = 0; i < Z; i++){ // runs for the length of the message
         scanf("%c", &alpha[i]); //taking values from stdin and storing them in aphla
         if(alpha[i] >= 97 && alpha[i] <= 122){// if lowercase make uppercase
