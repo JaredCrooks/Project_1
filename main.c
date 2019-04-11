@@ -15,20 +15,17 @@ void Dcryption1(char *alpha, int K, int Z);
 void zero(char *x, int N);
 
 /*------------MAIN CODE STARTS HERE------------MAIN CODE STARTS HERE------------MAIN CODE STARTS HERE------------*/
-/*FILE *test;
-test = fopen("data", "r");
-if(test == NULL) {
-  perror("fopen()");
-return; }
-// open file etc
-while(!feof(test)) {
-  // Read from file
-// Do stuff
-}
- */
-int main() {
-    int K = 5;  // the Key (rotation amount)
-    int Z = 26; /* length of the message YET TO COMPLETE: auto find legth*/
+	/*FILE *key;
+	key = fopen("Key.txt", "r");
+	char C;
+	while(feof(key)==0){
+	    fscanf(key, "%c", &C);
+	    printf("%c\n", C);
+	} */
+ 
+int main() {  
+    int K = 0;  // the Key (rotation amount)
+    int Z = 30; /* length of the message YET TO COMPLETE: auto find legth*/
    
    
     char msg[Z];    //set up array to store message
@@ -43,6 +40,7 @@ int main() {
     for(int i =0; i < Z; i++){
         printf("%c", (int)msg[i]); //print the array CHANGE TO %c FOR LETTER, %d FOR ASCII
     }
+    
     return 0;
 }
 
@@ -69,14 +67,15 @@ void encryption1(char *alpha, int K, int Z){
         if(alpha[i] >= 97 && alpha[i] <= 122){// if lowercase make uppercase
             alpha[i]= alpha[i] - 32;      
        }
-       alpha[i]= alpha[i] + K; //rotating by the value of the key
-       if(alpha[i] > 90){
-           alpha[i] = alpha[i] - 26; //if value exceeds the value for Z return to A
-       }
-       if(alpha[i] < 65){
-           alpha[i] = alpha[i] + 26; //if value proceeds the value for A return to Z
-       }
-
+       if(alpha[i] != 32){              //preventing spaces from being changed 
+           alpha[i]= alpha[i] + K;      //rotating by the value of the key
+           if(alpha[i] > 90){
+               alpha[i] = alpha[i] - 26; //if value exceeds the value for Z return to A
+           }
+           if(alpha[i] < 65){
+               alpha[i] = alpha[i] + 26; //if value proceeds the value for A return to Z
+            }
+        }
     }
 }
 
@@ -91,14 +90,15 @@ void Dcryption1(char *alpha, int K, int Z){
         if(alpha[i] >= 97 && alpha[i] <= 122){// if lowercase make uppercase
             alpha[i]= alpha[i] - 32;      
        }
-       alpha[i]= alpha[i] - K; // unrotating by the value of the key
-       if(alpha[i] > 90){
-           alpha[i] = alpha[i] - 26; //if value exceeds the value for Z return to A
-       }
-       if(alpha[i] < 65){
-           alpha[i] = alpha[i] + 26; //if value proceeds the value for A return to Z
-       }
-
+       if(alpha[i] != 32){
+           alpha[i]= alpha[i] - K; // unrotating by the value of the key
+           if(alpha[i] > 90){
+               alpha[i] = alpha[i] - 26; //if value exceeds the value for Z return to A
+           }
+           if(alpha[i] < 65){
+               alpha[i] = alpha[i] + 26; //if value proceeds the value for A return to Z
+           }
+        }
     }
 }
 
