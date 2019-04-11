@@ -17,16 +17,10 @@ void zero(char *x, int N);
 /*------------MAIN CODE STARTS HERE------------MAIN CODE STARTS HERE------------MAIN CODE STARTS HERE------------*/
 int main() {
     
-    FILE *key;
-	key = fopen("Key.txt", "r");
-	char C;
-	while(feof(key)==0){
-	    fscanf(key, "%c", &C);
-	    printf("%c\n", C);
-	}
+    
 	
-    int K = 19;  // the Key (rotation amount)
-    int Z = 1000; /* length of the message YET TO COMPLETE: auto find legth*/
+    int K = 0;  // the Key (rotation amount)
+    int Z = 1000; /* length of the message*/
    
    
     char msg[Z];    //set up array to store message
@@ -35,7 +29,7 @@ int main() {
     
     //encryption1(msg, K, Z);  //takes the array, the value of the key and the length of the array
     //Dcryption1(msg, K, Z);   //takes the array, the value of the key and the length of the array
-
+    
 
     
     for(int i =0; i < Z; i++){
@@ -63,10 +57,14 @@ Currently there is no provision for non letter charaters
 -----------------------------------------------------------------*/
 
 void encryption1(char *alpha, int K, int Z){ 
-    for(int i = 0; i < Z; i++){ // runs for the length of the message
-        scanf("%c", &alpha[i]); //taking values from stdin and storing them in aphla
+    FILE *key;
+    key = fopen("Key.txt", "r");
+    for(int i = 0; i < Z; i++){         // runs for the length of the message
+        if(!feof(key)){                 //while not at end of file
+            alpha[i] = (char)fgetc(key);//take value from file and put into array alpha
+        }
         if(alpha[i] >= 97 && alpha[i] <= 122){// if lowercase make uppercase
-            alpha[i]= alpha[i] - 32;      
+            alpha[i]= alpha[i] - 32;      //performing math on ascii values to make uppercase
        }
        if(alpha[i] > 64 && alpha[i] < 91){ //preventing non letters from being changed 
            alpha[i]= alpha[i] + K;      //rotating by the value of the key
@@ -85,9 +83,13 @@ Exactly the same to the encryption function except it substracts
 the value of the key hence decrypting
 -----------------------------------------------------------------*/
 
-void Dcryption1(char *alpha, int K, int Z){ 
+void Dcryption1(char *alpha, int K, int Z){
+    FILE *key;
+    key = fopen("Key.txt", "r");
     for(int i = 0; i < Z; i++){ // runs for the length of the message
-        scanf("%c", &alpha[i]); //taking values from stdin and storing them in aphla
+        if(!feof(key)){                 //while not at end of file
+            alpha[i] = (char)fgetc(key);//take value from file and put into array alpha
+        }
         if(alpha[i] >= 97 && alpha[i] <= 122){// if lowercase make uppercase
             alpha[i]= alpha[i] - 32;      
        }
