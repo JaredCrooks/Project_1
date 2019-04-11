@@ -15,15 +15,16 @@ void Dcryption1(char *alpha, int K, int Z);
 void zero(char *x, int N);
 
 /*------------MAIN CODE STARTS HERE------------MAIN CODE STARTS HERE------------MAIN CODE STARTS HERE------------*/
-	/*FILE *key;
+int main() {
+    
+    FILE *key;
 	key = fopen("Key.txt", "r");
 	char C;
 	while(feof(key)==0){
 	    fscanf(key, "%c", &C);
 	    printf("%c\n", C);
-	} */
- 
-int main() {  
+	}
+	
     int K = 19;  // the Key (rotation amount)
     int Z = 1000; /* length of the message YET TO COMPLETE: auto find legth*/
    
@@ -32,7 +33,7 @@ int main() {
     zero(msg, Z);   // zero the array 
     
     
-    encryption1(msg, K, Z);  //takes the array, the value of the key and the length of the array
+    //encryption1(msg, K, Z);  //takes the array, the value of the key and the length of the array
     //Dcryption1(msg, K, Z);   //takes the array, the value of the key and the length of the array
 
 
