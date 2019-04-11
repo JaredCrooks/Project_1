@@ -24,8 +24,8 @@ void zero(char *x, int N);
 	} */
  
 int main() {  
-    int K = 0;  // the Key (rotation amount)
-    int Z = 30; /* length of the message YET TO COMPLETE: auto find legth*/
+    int K = 19;  // the Key (rotation amount)
+    int Z = 1000; /* length of the message YET TO COMPLETE: auto find legth*/
    
    
     char msg[Z];    //set up array to store message
@@ -33,7 +33,7 @@ int main() {
     
     
     encryption1(msg, K, Z);  //takes the array, the value of the key and the length of the array
-    Dcryption1(msg, K, Z);   //takes the array, the value of the key and the length of the array
+    //Dcryption1(msg, K, Z);   //takes the array, the value of the key and the length of the array
 
 
     
@@ -67,7 +67,7 @@ void encryption1(char *alpha, int K, int Z){
         if(alpha[i] >= 97 && alpha[i] <= 122){// if lowercase make uppercase
             alpha[i]= alpha[i] - 32;      
        }
-       if(alpha[i] != 32){              //preventing spaces from being changed 
+       if(alpha[i] > 64 && alpha[i] < 91){ //preventing non letters from being changed 
            alpha[i]= alpha[i] + K;      //rotating by the value of the key
            if(alpha[i] > 90){
                alpha[i] = alpha[i] - 26; //if value exceeds the value for Z return to A
@@ -90,7 +90,7 @@ void Dcryption1(char *alpha, int K, int Z){
         if(alpha[i] >= 97 && alpha[i] <= 122){// if lowercase make uppercase
             alpha[i]= alpha[i] - 32;      
        }
-       if(alpha[i] != 32){
+       if(alpha[i] > 64 && alpha[i] < 91){
            alpha[i]= alpha[i] - K; // unrotating by the value of the key
            if(alpha[i] > 90){
                alpha[i] = alpha[i] - 26; //if value exceeds the value for Z return to A
