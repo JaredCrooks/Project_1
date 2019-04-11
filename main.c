@@ -12,6 +12,7 @@ TODOO Run Program and be greeted by an user interface
 //function prototypes 
 void encryption1(char *alpha, int K, int Z); 
 void Dcryption1(char *alpha, int K, int Z);
+void encryption2(char *alpha, int Z);
 void zero(char *x, int N);
 
 /*------------MAIN CODE STARTS HERE------------MAIN CODE STARTS HERE------------MAIN CODE STARTS HERE------------*/
@@ -20,7 +21,7 @@ int main() {
     
 	
     int K = 0;  // the Key (rotation amount)
-    int Z = 1000; /* length of the message*/
+    int Z = 1024; /* length of the message*/
    
    
     char msg[Z];    //set up array to store message
@@ -29,7 +30,7 @@ int main() {
     
     //encryption1(msg, K, Z);  //takes the array, the value of the key and the length of the array
     //Dcryption1(msg, K, Z);   //takes the array, the value of the key and the length of the array
-    
+    encryption2(msg, Z);
 
     
     for(int i =0; i < Z; i++){
@@ -58,7 +59,7 @@ Currently there is no provision for non letter charaters
 
 void encryption1(char *alpha, int K, int Z){ 
     FILE *key;
-    key = fopen("Key.txt", "r");
+    key = fopen("Message", "r");
     for(int i = 0; i < Z; i++){         // runs for the length of the message
         if(!feof(key)){                 //while not at end of file
             alpha[i] = (char)fgetc(key);//take value from file and put into array alpha
@@ -85,7 +86,7 @@ the value of the key hence decrypting
 
 void Dcryption1(char *alpha, int K, int Z){
     FILE *key;
-    key = fopen("Key.txt", "r");
+    key = fopen("Message", "r");
     for(int i = 0; i < Z; i++){ // runs for the length of the message
         if(!feof(key)){                 //while not at end of file
             alpha[i] = (char)fgetc(key);//take value from file and put into array alpha
@@ -101,6 +102,53 @@ void Dcryption1(char *alpha, int K, int Z){
            if(alpha[i] < 65){
                alpha[i] = alpha[i] + 26; //if value proceeds the value for A return to Z
            }
+        }
+    }
+}
+
+
+/* ---------------------------------------------------------------
+Substituion cyher
+
+This function takes an array letters, and the length of the array 
+ and forces the letters all to uppercase. 
+-----------------------------------------------------------------*/
+
+void encryption2(char *alpha, int Z){ 
+    
+    
+    
+    
+    FILE *key;
+    key = fopen("Key.txt", "r");
+    char CODE[26];                      // array to store Key code
+    for(int i =0; i < 26; i++){
+        if(!feof(key) && i < 26){                 //while not at end of file
+            CODE[i] = (char)fgetc(key);//take value from file Key and put into array CODE
+        } 
+        
+        if(CODE[i] >= 97 && CODE[i] <= 122){// if lowercase make uppercase
+            CODE[i]= CODE[i] - 32;      //performing math on ascii values to make uppercase
+        }         
+    }
+    
+    
+    FILE *msg;
+    msg = fopen("Message", "r");                    
+    for(int i = 0; i < Z; i++){         // runs for the length of the message
+        
+        if(!feof(msg)){                 //while not at end of file
+            alpha[i] = (char)fgetc(msg);//take value from file message and put into array alpha
+        }
+        
+        if(alpha[i] >= 97 && alpha[i] <= 122){// if lowercase make uppercase
+            alpha[i]= alpha[i] - 32;      //performing math on ascii values to make uppercase
+        }
+        
+        if(alpha[i] > 64 && alpha[i] < 91){ //preventing non letters from being changed 
+            // Main code to encyrpt goes here
+            char tmp = alpha[i] - 65;
+            alpha[i] = CODE[(int)tmp];
         }
     }
 }
