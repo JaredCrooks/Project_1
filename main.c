@@ -2,6 +2,7 @@
 
 TODOO Run Program and be greeted by an user interface
 TODOO Explain other files as well
+TODOO more commenting 
 
 --------------------------------------------------------------------------------------------------------------------*/
 
