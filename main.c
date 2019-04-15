@@ -29,9 +29,10 @@ int main() {
     char msg[Z];    //set up array to store message
     zero(msg, Z);   // zero the array 
     
-    
+    K = BruteForce(msg, Z);
+    printf("%d", K);
     //encryption1(msg, K, Z);  //takes the array, the value of the key and the length of the array
-    //Dcryption1(msg, K, Z);   //takes the array, the value of the key and the length of the array
+    Dcryption1(msg, K, Z);   //takes the array, the value of the key and the length of the array
     //encryption2(msg, Z);
     //decryption2(msg, Z);
     
@@ -206,14 +207,14 @@ void decryption2(char *alpha, int Z){
     }
 }
 /* ---------------------------------------------------------------
-Buteforces a rotation cipher
+Bute forces a rotation cipher
 
 It takes and array of type char and length of the array 
 
 -----------------------------------------------------------------*/
 int BruteForce(char *alpha, int Z){
     for(int i =0; i<26; i++){
-        encryption1(alpha, i, Z);
+        Dcryption1(alpha, i, Z);
         for(int k = 0; k < Z; k++){
             int a = k + 1;
             int b = k + 2;
@@ -222,7 +223,7 @@ int BruteForce(char *alpha, int Z){
             }
         }
     }
-    return 42;
+    return 42;            //the answer to everything including why your code broke
 }
 
 /* ---------------------------------------------------------------
