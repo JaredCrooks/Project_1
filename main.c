@@ -193,9 +193,14 @@ void decryption2(char *alpha, int Z){
         }
         
         if(alpha[i] > 64 && alpha[i] < 91){ //preventing non letters from being changed 
-            // Main code to encyrpt goes here
-            char tmp = alpha[i] - 65;
-            alpha[i] = CODE[(int)tmp];
+            // Main code to decyrpt goes here
+            char tmp = alpha[i];
+            for(int k=0; k<26; k++ ){
+                if(tmp == CODE[k]){
+                    alpha[i] = k + 65;
+                    break;
+                }                
+            }
         }
     }
 }
