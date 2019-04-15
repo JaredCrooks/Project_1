@@ -23,7 +23,7 @@ int main() {
     
     
 	
-    int K = 0;  // the Key (rotation amount)
+    int K = 0;  // the Key (rotation amount) keep under 27
     int Z = 1024; /* length of the message*/
    
    
@@ -31,7 +31,7 @@ int main() {
     zero(msg, Z);   // zero the array 
     
     K = BruteForce(msg, Z);
-    printf("%d", K);
+    printf("%d\n", K);
     //encryption1(msg, K, Z);  //takes the array, the value of the key and the length of the array
     Dcryption1(msg, K, Z);   //takes the array, the value of the key and the length of the array
     //encryption2(msg, Z);
@@ -219,7 +219,17 @@ int BruteForce(char *alpha, int Z){
         for(int k = 0; k < Z; k++){
             int a = k + 1;
             int b = k + 2;
+            int c = k + 3;
             if(alpha[k] == 84 && alpha[a] == 72 && alpha[b] == 69){
+                return i;
+            }
+            if(alpha[k]==65 && alpha[a]==78 && alpha[b]==68){
+                return i;
+            }
+            if(alpha[k] == 84 && alpha[a] == 72 && alpha[b] == 65 && alpha[c] == 84){
+                return i;
+            }
+            if(alpha[k] == 72 && alpha[a] == 65 && alpha[b] == 86 && alpha[c] == 69){
                 return i;
             }
         }
