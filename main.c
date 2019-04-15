@@ -14,6 +14,7 @@ void encryption1(char *alpha, int K, int Z);
 void Dcryption1(char *alpha, int K, int Z);
 void encryption2(char *alpha, int Z);
 void decryption2(char *alpha, int Z);
+int BruteForce(char *alpha, int Z);
 void zero(char *x, int N);
 
 /*------------MAIN CODE STARTS HERE------------MAIN CODE STARTS HERE------------MAIN CODE STARTS HERE------------*/
@@ -32,7 +33,7 @@ int main() {
     //encryption1(msg, K, Z);  //takes the array, the value of the key and the length of the array
     //Dcryption1(msg, K, Z);   //takes the array, the value of the key and the length of the array
     //encryption2(msg, Z);
-    decryption2(msg, Z);
+    //decryption2(msg, Z);
     
     for(int i =0; i < Z; i++){
         printf("%c", (int)msg[i]); //print the array CHANGE TO %c FOR LETTER, %d FOR ASCII
@@ -205,9 +206,30 @@ void decryption2(char *alpha, int Z){
     }
 }
 /* ---------------------------------------------------------------
+Buteforces a rotation cipher
+
+It takes and array of type char and length of the array 
+
+-----------------------------------------------------------------*/
+int BruteForce(char *alpha, int Z){
+    for(int i =0; i<26; i++){
+        encryption1(alpha, i, Z);
+        for(int k = 0; k < Z; k++){
+            int a = k + 1;
+            int b = k + 2;
+            if(alpha[k] == 84 && alpha[a] == 72 && alpha[b] == 69){
+                return i;
+            }
+        }
+    }
+    return 42;
+}
+
+/* ---------------------------------------------------------------
 function to set all values of an array to zero 
 
-It takes and array of type char and modifies it
+It takes and array of type char and modifies it to equal 0 
+for every value
 -----------------------------------------------------------------*/
 
 void zero(char *x, int N){ 
