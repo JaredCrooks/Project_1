@@ -212,6 +212,7 @@ Bute forces a rotation cipher
 
 It takes and array of type char and length of the array 
 
+returns the rotation amount for decryption
 -----------------------------------------------------------------*/
 int BruteForce(char *alpha, int Z){
     for(int i =0; i<26; i++){
@@ -230,6 +231,9 @@ int BruteForce(char *alpha, int Z){
                 return i;
             }
             if(alpha[k] == 72 && alpha[a] == 65 && alpha[b] == 86 && alpha[c] == 69){
+                return i;
+            }
+            if(alpha[k] == 89 && alpha[a] == 79 && alpha[b] == 85){
                 return i;
             }
         }
