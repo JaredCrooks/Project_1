@@ -250,13 +250,27 @@ takes an array (alpha) and its length (Z)
 -----------------------------------------------------------------*/
 
 char mode(char *alpha, int Z){
-    FILE *msg;
-    msg = fopen("Message", "r");  
-    for(int i =0; i < Z; i++){
-        
-        
+    char Dcryptioncode[26];
+    for(char k=0; k<26; k++){
+        FILE *msg;
+        msg = fopen("Message", "r");  
+        for(int i =0; i < Z; i++){
+            if(!feof(msg)){                 //while not at end of file
+                alpha[i] = (char)fgetc(msg);//take value from file message and put into array alpha
+            }
+            if(alpha[i] >= 97 && alpha[i] <= 122){// if lowercase make uppercase
+                alpha[i]= alpha[i] - 32;      //performing math on ascii values to make uppercase
+            }
+            
+            if(alpha[i] > 64 && alpha[i] < 91){ //preventing non letters from being changed 
+                // Main code to decyrpt goes here
+                if(alpha[i] == (65 + k){
+                    Dcryption[k]++;
+                }
+            }
+        }
     }
-    
+   
 }
 /* ---------------------------------------------------------------
 function to set all values of an array to zero 
