@@ -16,6 +16,7 @@ void Dcryption1(char *alpha, int K, int Z);
 void encryption2(char *alpha, int Z);
 void decryption2(char *alpha, int Z);
 int BruteForce(char *alpha, int Z);
+char mode(char *alpha, int Z);
 void zero(char *x, int N);
 
 /*------------MAIN CODE STARTS HERE------------MAIN CODE STARTS HERE------------MAIN CODE STARTS HERE------------*/
@@ -221,19 +222,20 @@ int BruteForce(char *alpha, int Z){
             int a = k + 1;
             int b = k + 2;
             int c = k + 3;
-            if(alpha[k] == 84 && alpha[a] == 72 && alpha[b] == 69){
+            /* This next bit of chock checks for english words*/
+            if(alpha[k] == 84 && alpha[a] == 72 && alpha[b] == 69){     //THE
                 return i;
             }
-            if(alpha[k]==65 && alpha[a]==78 && alpha[b]==68){
+            if(alpha[k]==65 && alpha[a]==78 && alpha[b]==68){           //AND  
                 return i;
             }
-            if(alpha[k] == 84 && alpha[a] == 72 && alpha[b] == 65 && alpha[c] == 84){
+            if(alpha[k] == 84 && alpha[a] == 72 && alpha[b] == 65 && alpha[c] == 84){   //THAT
                 return i;
             }
-            if(alpha[k] == 72 && alpha[a] == 65 && alpha[b] == 86 && alpha[c] == 69){
+            if(alpha[k] == 72 && alpha[a] == 65 && alpha[b] == 86 && alpha[c] == 69){   //HAVE
                 return i;
             }
-            if(alpha[k] == 89 && alpha[a] == 79 && alpha[b] == 85){
+            if(alpha[k] == 89 && alpha[a] == 79 && alpha[b] == 85){     //YOU
                 return i;
             }
         }
@@ -241,6 +243,21 @@ int BruteForce(char *alpha, int Z){
     return 42;            //the answer to everything including why your code broke
 }
 
+/* ---------------------------------------------------------------
+function returns the next most frequently occouring letter 
+
+takes an array (alpha) and its length (Z)
+-----------------------------------------------------------------*/
+
+char mode(char *alpha, int Z){
+    FILE *msg;
+    msg = fopen("Message", "r");  
+    for(int i =0; i < Z; i++){
+        
+        
+    }
+    
+}
 /* ---------------------------------------------------------------
 function to set all values of an array to zero 
 
