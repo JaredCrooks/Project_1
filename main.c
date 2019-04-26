@@ -1,8 +1,20 @@
 /* ------------------------------------------------------------------------------------------------------------------
 
 TODOO Run Program and be greeted by an user interface
-TODOO Explain other files as well
-TODOO more commenting 
+
+
+READ ME PLEASE 
+    --Message file--
+        Just paste your message to be encoded or decoded in the Message file
+        lower cased letters will be forced to uppercase upon printing 
+    --/Message file--
+
+    --Key.txt--
+        The is the key for subsitution encryption/decryption.
+        Only place 26 charaters in there upper or lowercase.
+        the first letter placed will be assigned to A the 
+        next letter assigned to B and so on alphabetically.
+    --/Key.txt--
 
 --------------------------------------------------------------------------------------------------------------------*/
 
@@ -25,7 +37,7 @@ int main() {
     
 	
     int K = 0;  // the Key (rotation amount) keep under 27
-    int Z = 1024; /* length of the message*/
+    int Z = 2048; /* length of the message*/
    
    
     char msg[Z];    //set up array to store message
@@ -59,7 +71,7 @@ The function corrects for the values going outside ASCII
 corrisponding to letters by either adding or subtracting 26 to the
 value encrypted letter. 
 
-Currently there is no provision for non letter charaters 
+does not change non-letters
 -----------------------------------------------------------------*/
 
 void encryption1(char *alpha, int K, int Z){ 
@@ -122,6 +134,8 @@ key, forces the letters all to uppercase.
 
 compares the  message with the key and then places the encyrpted 
 message in the array
+
+does not change non-letters
 -----------------------------------------------------------------*/
 
 void encryption2(char *alpha, int Z){ 
@@ -173,6 +187,8 @@ key, forces the letters all to uppercase.
 
 compares the encrypted message with the key and then places the dcrypted 
 message in the array
+
+does not change non-letters
 -----------------------------------------------------------------*/
 
 void decryption2(char *alpha, int Z){ 
