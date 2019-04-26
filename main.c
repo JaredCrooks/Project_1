@@ -115,8 +115,13 @@ void Dcryption1(char *alpha, int K, int Z){
 /* ---------------------------------------------------------------
 Substituion cyher encryption
 
-This function takes an array letters, and the length of the array 
- and forces the letters all to uppercase. 
+It requires an array and its length 
+
+This function takes two files of letter one message the other the 
+key, forces the letters all to uppercase.
+
+compares the  message with the key and then places the encyrpted 
+message in the array
 -----------------------------------------------------------------*/
 
 void encryption2(char *alpha, int Z){ 
@@ -152,8 +157,8 @@ void encryption2(char *alpha, int Z){
         
         if(alpha[i] > 64 && alpha[i] < 91){ //preventing non letters from being changed 
             // Main code to encyrpt goes here
-            char tmp = alpha[i] - 65;
-            alpha[i] = CODE[(int)tmp];
+            char tmp = alpha[i] - 65;       //setting A to 0, B to 1, C to 2 and etc in a temporary varible
+            alpha[i] = CODE[(int)tmp];      //replace the value of the array with the letter from the key corresponding the temporary value
         }
     }
 }
@@ -161,8 +166,13 @@ void encryption2(char *alpha, int Z){
 /* ---------------------------------------------------------------
 Substituion cyher DECRYPTION
 
-This function takes an array letters, and the length of the array 
- and forces the letters all to uppercase. 
+It requires an array and its length 
+
+This function takes two files of letter one message the other the 
+key, forces the letters all to uppercase.
+
+compares the encrypted message with the key and then places the dcrypted 
+message in the array
 -----------------------------------------------------------------*/
 
 void decryption2(char *alpha, int Z){ 
@@ -171,7 +181,7 @@ void decryption2(char *alpha, int Z){
     
     
     FILE *key;
-    key = fopen("Key.txt", "r");
+    key = fopen("Key.txt", "r");        // open the key file for read
     char CODE[26];                      // array to store Key code
     for(int i =0; i < 26; i++){
         if(!feof(key) && i < 26){                 //while not at end of file
@@ -185,7 +195,7 @@ void decryption2(char *alpha, int Z){
     
     
     FILE *msg;
-    msg = fopen("Message", "r");                    
+    msg = fopen("Message", "r");        // open mesasge file for read            
     for(int i = 0; i < Z; i++){         // runs for the length of the message
         
         if(!feof(msg)){                 //while not at end of file
@@ -198,11 +208,11 @@ void decryption2(char *alpha, int Z){
         
         if(alpha[i] > 64 && alpha[i] < 91){ //preventing non letters from being changed 
             // Main code to decyrpt goes here
-            char tmp = alpha[i];
+            char tmp = alpha[i]; 
             for(int k=0; k<26; k++ ){
-                if(tmp == CODE[k]){
-                    alpha[i] = k + 65;
-                    break;
+                if(tmp == CODE[k]){     //if value in the array matches value from the key
+                    alpha[i] = k + 65;  //then store the decyrpted value of that key letter 
+                    break;   //break to remove redunadant processing as the letter has already been dcrypted
                 }                
             }
         }
@@ -216,15 +226,19 @@ It takes and array of type char and length of the array
 returns the rotation amount for decryption
 -----------------------------------------------------------------*/
 int BruteForce(char *alpha, int Z){
-    for(int i =0; i<26; i++){
-        Dcryption1(alpha, i, Z);
-        for(int k = 0; k < Z; k++){
-            int a = k + 1;
-            int b = k + 2;
-            int c = k + 3;
-            /* This next bit of chock checks for english words*/
+    for(int i =0; i<26; i++){           //for each possible rotation amount
+        Dcryption1(alpha, i, Z);        //run the decyrption function
+        for(int k = 0; k < Z; k++){     //loop to run through the decrypted array 
+            int a = k + 1;          //2nd letter of a possible word
+            int b = k + 2;          //3rd letter of a possible word
+            int c = k + 3;          //4th letter of a possible word
+            /* 
+                This next bit of code checks for english words
+                It works by checking the ascii value of a sequence of letters  
+                in the array
+            */
             if(alpha[k] == 84 && alpha[a] == 72 && alpha[b] == 69){     //THE
-                return i;
+                return i; // return 
             }
             if(alpha[k]==65 && alpha[a]==78 && alpha[b]==68){           //AND  
                 return i;
@@ -243,45 +257,17 @@ int BruteForce(char *alpha, int Z){
     return 42;            //the answer to everything including why your code broke
 }
 
-/* ---------------------------------------------------------------
-function returns the next most frequently occouring letter 
 
-takes an array (alpha) and its length (Z)
------------------------------------------------------------------*/
-
-char mode(char *alpha, int Z){
-    char Dcryptioncode[26];
-    for(char k=0; k<26; k++){
-        FILE *msg;
-        msg = fopen("Message", "r");  
-        for(int i =0; i < Z; i++){
-            if(!feof(msg)){                 //while not at end of file
-                alpha[i] = (char)fgetc(msg);//take value from file message and put into array alpha
-            }
-            if(alpha[i] >= 97 && alpha[i] <= 122){// if lowercase make uppercase
-                alpha[i]= alpha[i] - 32;      //performing math on ascii values to make uppercase
-            }
-            
-            if(alpha[i] > 64 && alpha[i] < 91){ //preventing non letters from being changed 
-                // Main code to decyrpt goes here
-                if(alpha[i] == (65 + k){
-                    Dcryption[k]++;
-                }
-            }
-        }
-    }
-   
-}
 /* ---------------------------------------------------------------
 function to set all values of an array to zero 
 
 It takes and array of type char and modifies it to equal 0 
-for every value
+for every value upto the number given(N)
 -----------------------------------------------------------------*/
 
-void zero(char *x, int N){ 
-    int i =0;
-    for(i= 0; i < N; i++){
-    x[i] = 0;
-    }
+void zero(char *x, int N){  //takes pointer and number of charaters in arrary 
+    int i =0; 
+    for(i= 0; i < N; i++){  //start loop that increments 
+    x[i] = 0;               //set value to zero
+    }                       //repeat lopp
 }
