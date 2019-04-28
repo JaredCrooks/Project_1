@@ -13,7 +13,9 @@ PLEASE READ ME
     --/Key.txt--
 
     --main.c--
-        
+        Running the program will greet you with the options 
+        Running again with non-zero values in input file will perform operation
+        Using the terminal will prompt you and take values 
     --/main.c--
 --------------------------------------------------------------------------------------------------------------------*/
 
