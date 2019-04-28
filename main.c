@@ -1,5 +1,16 @@
 /* ------------------------------------------------------------------------------------------------------------------
 PLEASE READ ME  
+        
+     --input file--
+        THIS CAN BE IGNORED IF TERMINAL IS USED TO RUN PROGRAM 
+        Place two integers seperated by a space The first selects program (Run program to give options)
+        the second is a rotation amount leave as zero if not needed
+    --/input file--
+    
+     --Output.txt--
+        alongside the ternimal printf, The results get placed in this file.
+    --/Output.txt--
+    
     --Message file--
         Just paste your message to be encoded or decoded in the Message file
         lower cased letters will be forced to uppercase upon printing 
@@ -14,8 +25,14 @@ PLEASE READ ME
 
     --main.c--
         Running the program will greet you with the options 
-        Running again with non-zero values in input file will perform operation
-        Using the terminal will prompt you and take values 
+        Running again with RunInput and non-zero values in input file will perform the desired operation
+        Using the terminal will prompt you and take values (if running either functions 3, 4 or 5 just hit enter on the second input)
+        
+        The program will both write to the terminal and to a file Output.txt
+        
+        Lowercase letters will be made uppercase
+        rotation amount cannot exceed 26 cypher or be negitive, it is read as an integer 
+        
     --/main.c--
 --------------------------------------------------------------------------------------------------------------------*/
 
@@ -49,6 +66,10 @@ int main() {
     int c;
     
     scanf("%d %d", &c, &K);
+    if(K > 26 || K < 0 ){
+        printf("error rotation amount not inside 0-26\n");
+        return 0;
+    }
     switch(c){
         case 1:
             encryption1(msg, K, Z);  //takes the array, the value of the key and the length of the array
@@ -66,8 +87,11 @@ int main() {
             dcyrypt(msg, K, Z);
             break;
     }
+    FILE *out;
+    out = fopen("Output.txt", "w"); //opening file to produce output message
     for(int i =0; i < Z; i++){
-        printf("%c", (int)msg[i]); //print the array CHANGE TO %c FOR LETTER, %d FOR ASCII
+        printf("%c", (int)msg[i]);  //print the array. CHANGE TO %c FOR LETTER, %d FOR ASCII
+        fprintf(out, "%c", (int)msg[i]);
     }
     return 0;
 }
