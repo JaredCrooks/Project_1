@@ -3,7 +3,7 @@
 TODOO Run Program and be greeted by an user interface
 
 
-READ ME PLEASE 
+PLEASE READ ME  
     --Message file--
         Just paste your message to be encoded or decoded in the Message file
         lower cased letters will be forced to uppercase upon printing 
@@ -32,16 +32,18 @@ char mode(char *alpha, int Z);
 void zero(char *x, int N);
 
 /*------------MAIN CODE STARTS HERE------------MAIN CODE STARTS HERE------------MAIN CODE STARTS HERE------------*/
-int main() {
-    
-    
-	
+int main() { 
     int K = 0;  // the Key (rotation amount) keep under 27
     int Z = 2048; /* length of the message*/
-   
-   
     char msg[Z];    //set up array to store message
     zero(msg, Z);   // zero the array 
+    
+    printf("Please select by typying: \n<1> For encyrption of a rotaion cypher followed by rotation amount\n");
+    printf("<2> For decyrption of a rotaion cypher followed by rotation amount\n");
+    printf("<3> For encyrption of a subsitution cypher after entering the key in KEY.txt\n");
+    printf("<4> For decyrption of a subsitution cypher after entering the key in KEY.txt\n");
+    printf("<5> For decyrption of a rotaion cypher without a Key\n");
+
     
     K = BruteForce(msg, Z);
     printf("%d\n", K);
