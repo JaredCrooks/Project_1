@@ -1,8 +1,4 @@
 /* ------------------------------------------------------------------------------------------------------------------
-
-TODOO Run Program and be greeted by an user interface
-
-
 PLEASE READ ME  
     --Message file--
         Just paste your message to be encoded or decoded in the Message file
@@ -16,6 +12,9 @@ PLEASE READ ME
         next letter assigned to B and so on alphabetically.
     --/Key.txt--
 
+    --main.c--
+        
+    --/main.c--
 --------------------------------------------------------------------------------------------------------------------*/
 
 #include <stdio.h>
@@ -40,38 +39,34 @@ int main() {
     zero(msg, Z);   // zero the array 
     
     printf("Please first write message in Message file then select action by typying: \n");
-    printf("<1> For encyrption of a rotaion cypher followed by rotation amount\n");
-    printf("<2> For decyrption of a rotaion cypher followed by rotation amount\n");
+    printf("<1> For encyrption of a rotaion cypher FOLLOWED by rotation amount\n");
+    printf("<2> For decyrption of a rotaion cypher FOLLOWED by rotation amount\n");
     printf("<3> For encyrption of a subsitution cypher after entering the key in KEY.txt\n");
     printf("<4> For decyrption of a subsitution cypher after entering the key in KEY.txt\n");
     printf("<5> For decyrption of a rotaion cypher without a Key\n");
     int c;
     
-    while(K==0){
-        scanf("%d %d", &c, &K);
-        switch(c){
-            case 1:
-                encryption1(msg, K, Z);  //takes the array, the value of the key and the length of the array
-                break;
-            case 2:
-                Dcryption1(msg, K, Z);   //takes the array, the value of the key and the length of the array
-                break;
-            case 3:
-                encryption2(msg, Z);
-                break;
-            case 4:
-                decryption2(msg, Z);
-                break;
-            case 5:
-                dcyrypt(msg, K, Z);
-                break;
-        }
+    scanf("%d %d", &c, &K);
+    switch(c){
+        case 1:
+            encryption1(msg, K, Z);  //takes the array, the value of the key and the length of the array
+            break;
+        case 2:
+            Dcryption1(msg, K, Z);   //takes the array, the value of the key and the length of the array
+            break;
+        case 3:
+            encryption2(msg, Z);
+            break;
+        case 4:
+            decryption2(msg, Z);
+            break;
+        case 5:
+            dcyrypt(msg, K, Z);
+            break;
     }
-    
     for(int i =0; i < Z; i++){
         printf("%c", (int)msg[i]); //print the array CHANGE TO %c FOR LETTER, %d FOR ASCII
     }
-    
     return 0;
 }
 
