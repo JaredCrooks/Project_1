@@ -28,6 +28,7 @@ void Dcryption1(char *alpha, int K, int Z);
 void encryption2(char *alpha, int Z);
 void decryption2(char *alpha, int Z);
 int BruteForce(char *alpha, int Z);
+void dcyrypt(char *alpha, int K, int Z);
 char mode(char *alpha, int Z);
 void zero(char *x, int N);
 
@@ -38,19 +39,34 @@ int main() {
     char msg[Z];    //set up array to store message
     zero(msg, Z);   // zero the array 
     
-    printf("Please select by typying: \n<1> For encyrption of a rotaion cypher followed by rotation amount\n");
+    printf("Please first write message in Message file then select action by typying: \n");
+    printf("<1> For encyrption of a rotaion cypher followed by rotation amount\n");
     printf("<2> For decyrption of a rotaion cypher followed by rotation amount\n");
     printf("<3> For encyrption of a subsitution cypher after entering the key in KEY.txt\n");
     printf("<4> For decyrption of a subsitution cypher after entering the key in KEY.txt\n");
     printf("<5> For decyrption of a rotaion cypher without a Key\n");
-
+    int c;
     
-    K = BruteForce(msg, Z);
-    printf("%d\n", K);
-    //encryption1(msg, K, Z);  //takes the array, the value of the key and the length of the array
-    Dcryption1(msg, K, Z);   //takes the array, the value of the key and the length of the array
-    //encryption2(msg, Z);
-    //decryption2(msg, Z);
+    while(K==0){
+        scanf("%d %d", &c, &K);
+        switch(c){
+            case 1:
+                encryption1(msg, K, Z);  //takes the array, the value of the key and the length of the array
+                break;
+            case 2:
+                Dcryption1(msg, K, Z);   //takes the array, the value of the key and the length of the array
+                break;
+            case 3:
+                encryption2(msg, Z);
+                break;
+            case 4:
+                decryption2(msg, Z);
+                break;
+            case 5:
+                dcyrypt(msg, K, Z);
+                break;
+        }
+    }
     
     for(int i =0; i < Z; i++){
         printf("%c", (int)msg[i]); //print the array CHANGE TO %c FOR LETTER, %d FOR ASCII
@@ -275,6 +291,11 @@ int BruteForce(char *alpha, int Z){
     return 42;            //the answer to everything including why your code broke
 }
 
+//function to package brute force decryption for rotation cyphers
+void dcyrypt(char *alpha, int K, int Z){
+    K = BruteForce(alpha, Z); //changes the rotation amount by the valued discovered by the brtue force method   
+    Dcryption1(alpha, K, Z);   //takes the array, the value of the key and the length of the array
+}
 
 /* ---------------------------------------------------------------
 function to set all values of an array to zero 
