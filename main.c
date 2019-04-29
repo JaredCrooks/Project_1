@@ -179,9 +179,6 @@ does not change non-letters
 
 void encryption2(char *alpha, int Z){ 
     
-    
-    
-    
     FILE *key;
     key = fopen("Key.txt", "r");
     char CODE[26];                      // array to store Key code
@@ -194,7 +191,6 @@ void encryption2(char *alpha, int Z){
             CODE[i]= CODE[i] - 32;      //performing math on ascii values to make uppercase
         }         
     }
-    
     
     FILE *msg;
     msg = fopen("Message", "r");                    
@@ -232,9 +228,6 @@ does not change non-letters
 
 void decryption2(char *alpha, int Z){ 
     
-    
-    
-    
     FILE *key;
     key = fopen("Key.txt", "r");        // open the key file for read
     char CODE[26];                      // array to store Key code
@@ -247,7 +240,6 @@ void decryption2(char *alpha, int Z){
             CODE[i]= CODE[i] - 32;      //performing math on ascii values to make uppercase
         }         
     }
-    
     
     FILE *msg;
     msg = fopen("Message", "r");        // open mesasge file for read            
@@ -307,6 +299,21 @@ int BruteForce(char *alpha, int Z){
             if(alpha[k] == 89 && alpha[a] == 79 && alpha[b] == 85){     //YOU
                 return i;
             }
+            if(alpha[k] == 84 && alpha[a] == 72 && alpha[b] == 73 && alpha[c] == 83){   //THIS
+                return i;
+            }
+            if(alpha[k] == 70 && alpha[a] == 82 && alpha[b] == 79 && alpha[c] == 77){   //FROM
+                return i; 
+            }
+            if(alpha[k] == 84 && alpha[a] == 72 && alpha[b] == 69 && alpha[c] == 89){   //THEY
+                return i;
+            }
+            if(alpha[k] == 87 && alpha[a] == 72 && alpha[b] == 65 && alpha[c] == 84){   //WHAT
+                return i;
+            }
+            if(alpha[k] == 84 && alpha[a] == 73 && alpha[b] == 77 && alpha[c] == 69){   //TIME
+                return i;
+            }//if any of these words are found then it will return the roation amount that created this message.
         }
     }
     return 42;            //the answer to everything including why your code broke
